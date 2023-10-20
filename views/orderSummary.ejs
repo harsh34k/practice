@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include("partials/head") %>
+</head>
+
+<body>
+    <% include("partials/nav") %>
+
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="<%= product.image %>" alt="<%= product.title %>" class="img-fluid">
+                </div>
+                <div class="col-md-8">
+                    <h2>
+                        <%= product[0].product.title%>
+                    </h2>
+                    <p>
+                        <%= product[0].product.description %>
+                    </p>
+                    <p>Price: <%= product[0].product.price.toFixed(2) %>
+                    </p>
+                    <p>Quantity: <%= product[0].quantity %>
+                    </p>
+                    <hr>
+                    <p>Subtotal: <%= subtotal.toFixed(2) %>
+                    </p>
+                    <p>Tax: <%= tax.toFixed(2) %>
+                    </p>
+                    <p>Total: <%= total.toFixed(2) %>
+                    </p>
+                    <form action="/checkout" method="post">
+                        <input type="hidden" name="productId" value="<%= product._id %>">
+                        <input type="hidden" name="quantity" value="<%= quantity %>">
+                        <button type="submit" class="btn btn-primary">Proceed to Checkout</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <% include("partials/script") %>
+</body>
+
+</html>

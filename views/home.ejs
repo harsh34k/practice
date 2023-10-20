@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./partials/head") %>
+</head>
+
+<body>
+    <%- include("./partials/nav") %>
+        <!-- crousel -->
+        <%- include("./corousel") %>
+
+            <% if (searchedPosts && searchedPosts.length) { %>
+                <div class="row row-cols-3 mt-4">
+                    <% searchedPosts.forEach(element=> { %>
+                        <div class="col">
+
+                            <div class="card mh-100" style="width: 18rem;">
+                                <img class="card-img-top" src="<%= element.image %>" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= element.title %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%= element.description %>
+                                    </p>
+                                    <a href="/product/<%= element.id %>" class="btn btn-primary">Buy
+                                        Now!!</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+
+                            <% } else { %>
+
+                                <!-- all elements -->
+                                <div class="row row-cols-3 mt-4">
+                                    <% productModel.forEach(element=> { %>
+                                        <div class="col">
+
+                                            <div class="card mh-100" style="width: 18rem;">
+                                                <img class="card-img-top" src="<%= element.image %>"
+                                                    alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        <%= element.title %>
+                                                    </h5>
+                                                    <p class="card-text">
+                                                        <%= element.description %>
+                                                    </p>
+                                                    <a href="/product/<%= element.id %>" class="btn btn-primary">Buy
+                                                        Now!!</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% }) %>
+
+                                </div>
+
+                                <!-- jewelery -->
+                                <center>
+                                    <h2>Best in Jewelery</h2>
+                                </center>
+                                <div class="row row-cols-3 mt-4  d-flex flex-row">
+                                    <% productModel.forEach(element=> { %>
+                                        <% if (element.category==="jewelery" ) { %>
+
+                                            <div class="mb-4">
+
+                                                <div class="card mh-100" style="width: 18rem;">
+                                                    <img class="card-img-top" src="<%= element.image %>"
+                                                        alt="Card image cap">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">
+                                                            <%= element.title %>
+                                                        </h5>
+                                                        <p class="card-text">
+                                                            <%= element.description %>
+                                                        </p>
+
+                                                        <a href="/product/<%= element.id %>" class="btn btn-primary">Buy
+                                                            Now!!</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% } %>
+
+
+                                                <% }) %>
+                                </div>
+
+
+
+
+                                <!-- "women's clothing" -->
+                                <center>
+                                    <h2>Best in "women's clothing"</h2>
+                                </center>
+                                <div class="row row-cols-3 mt-4  d-flex flex-row">
+                                    <% productModel.forEach(element=> { %>
+                                        <% if (element.category==="women's clothing" ) { %>
+
+                                            <div class="mb-4">
+
+                                                <div class="card mh-100" style="width: 18rem;">
+                                                    <img class="card-img-top" src="<%= element.image %>"
+                                                        alt="Card image cap">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">
+                                                            <%= element.title %>
+                                                        </h5>
+                                                        <p class="card-text">
+                                                            <%= element.description %>
+                                                        </p>
+                                                        <a href="/product/<%= element.id %>" class="btn btn-primary">Buy
+                                                            Now!!</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% } %>
+
+
+                                                <% }) %>
+                                </div>
+
+                                <% } %>
+
+                                    <%- include("./partials/script") %>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./partials/head") %>
+</head>
+
+<body>
+    <%- include("./partials/nav") %>
+
+
+
+        <div class="d-flex container justify-content-around shadow-lg p-3 mb-5 bg-white rounded">
+
+
+            <div class="pd_cimg  m-4" style="height: 57vh;">
+                <img src="<%= product.image %>" style="height: inherit;object-fit: contain;
+                max-width: 29vw" alt="product image">
+
+            </div>
+            <div class="pd_cdetails">
+
+                <h2>
+                    <%= product.title %>
+                </h2>
+                <p class="fs-5 mt-4 mb-4">
+                    <%= product.description %>
+                </p>
+                <div class="fs-4 fw-bold"> $<%= product.price %>
+                </div>
+                <div class="d-flex align-items-center fs-4 text-muted mt-4">
+
+                    <%= product.rating.rate %> <img src="../assets/images/star.png" height="20rem" alt="">
+                </div>
+                <% if (locals.user && CurrentItemInCart) { %>
+                    <!-- <form action="/product/<%= product.id %>" method="post"> -->
+                    <div class="d-flex flex-column">
+                        <button class="btn btn-secondary " style="width: 40vh;
+                        padding: 0.5rem;
+                        margin-top: 1rem ;">Added to Cart</button>
+                        <!-- </form> -->
+
+                        <% } else { %>
+
+
+                            <form action="/product/<%= product.id %>" method="post">
+                                <div class="d-flex flex-column">
+                                    <button type="submit" class=" btn btn-warning " style="width: 40vh;
+                    padding: 0.5rem;
+                    margin-top: 1rem ;">Add to Cart</button>
+                            </form>
+                            <% } %>
+                                <!-- <button type="button" class="btn  btn-primary" style="width: 40vh;
+                    padding: 0.5rem;
+                    margin-top: 1rem ;">Buy Now</button> -->
+                    </div>
+            </div>
+        </div>
+
+        <%- include("./partials/script") %>
+</body>
+
+</html>

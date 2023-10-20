@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./partials/head") %>
+</head>
+
+<body>
+    <%- include("./partials/nav") %>
+
+        <% carts.forEach(cart=> {%>
+            <div class="card mb-3 shadow-lg p-2 bg-white rounded  "
+                style="  max-width: 70vw; margin: auto; margin-top: 1rem; max-height: 50vh;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="<%= cart.product.image %>" class="card-img"
+                            style="max-height: 70%; object-fit: contain;" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= cart.product.title %>
+                            </h5>
+                            <p class="card-text mt-4 mb-4">
+                                <%= cart.product.description %>
+                            </p>
+                            <div class="fs-4 fw-bold"> $<%= cart.product.price %>
+                            </div>
+
+                            <form action="/cart" method="post">
+                                <input type="hidden" name="productId" value="<%= cart.product.id %>">
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" class="form-control" name="quantity" value="1" min="1"
+                                    max="<%= cart.product.quantity %>" style="max-width: 10%;" />
+                                <button type="submit" class="btn  btn-primary" style="width: 40vh;
+                    padding: 0.5rem;
+                    margin-top: 1rem ;">Buy Now</button>
+                            </form>
+                            <form action="/cart/<%= cart._id %>?_method=DELETE" class="mt-4" method="POST">
+                                <button type="submit" class="btn btn-danger">Remove from cart</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <% }) %>
+
+
+                <%- include("./partials/script") %>
+</body>
+
+</html>
